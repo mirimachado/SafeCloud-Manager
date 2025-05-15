@@ -1,0 +1,6 @@
+/home/miri/Downloads/manager.cloud.safe/discovery-server/src/main/java/com/project/manager/cloud/safe/DiscoveryServerApplication.java
+/home/miri/Downloads/manager.cloud.safe/discovery-server/src/main/java/com/project/manager/cloud/safe/controller/DiscoveryServerController.java
+/home/miri/Downloads/manager.cloud.safe/discovery-server/src/main/java/com/project/manager/cloud/safe/dto/DiscoveryServerDTO.java
+/home/miri/Downloads/manager.cloud.safe/discovery-server/src/main/java/com/project/manager/cloud/safe/entity/DiscoveryServer.java
+/home/miri/Downloads/manager.cloud.safe/discovery-server/src/main/java/com/project/manager/cloud/safe/repository/DiscoveryServerRepository.java
+/home/miri/Downloads/manager.cloud.safe/discovery-server/src/main/java/com/project/manager/cloud/safe/service/DiscoveryServerService.java

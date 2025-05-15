@@ -1,0 +1,6 @@
+com/project/manager/cloud/safe/entity/Auditlog.class
+com/project/manager/cloud/safe/AuditlogServiceApplication.class
+com/project/manager/cloud/safe/dto/AuditlogDTO.class
+com/project/manager/cloud/safe/service/AuditlogService.class
+com/project/manager/cloud/safe/controller/AuditlogController.class
+com/project/manager/cloud/safe/repository/AuditlogRepository.class

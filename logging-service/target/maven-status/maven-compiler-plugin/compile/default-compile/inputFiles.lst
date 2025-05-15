@@ -1,0 +1,6 @@
+/home/miri/Downloads/manager.cloud.safe/logging-service/src/main/java/com/project/manager/cloud/safe/LoggingServiceApplication.java
+/home/miri/Downloads/manager.cloud.safe/logging-service/src/main/java/com/project/manager/cloud/safe/controller/LoggingController.java
+/home/miri/Downloads/manager.cloud.safe/logging-service/src/main/java/com/project/manager/cloud/safe/dto/LoggingDTO.java
+/home/miri/Downloads/manager.cloud.safe/logging-service/src/main/java/com/project/manager/cloud/safe/entity/Logging.java
+/home/miri/Downloads/manager.cloud.safe/logging-service/src/main/java/com/project/manager/cloud/safe/repository/LoggingRepository.java
+/home/miri/Downloads/manager.cloud.safe/logging-service/src/main/java/com/project/manager/cloud/safe/service/LoggingService.java

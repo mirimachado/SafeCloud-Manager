@@ -1,0 +1,6 @@
+com/project/manager/cloud/safe/dto/DashboardDTO.class
+com/project/manager/cloud/safe/DashboardServiceApplication.class
+com/project/manager/cloud/safe/entity/Dashboard.class
+com/project/manager/cloud/safe/controller/DashboardController.class
+com/project/manager/cloud/safe/service/DashboardService.class
+com/project/manager/cloud/safe/repository/DashboardRepository.class

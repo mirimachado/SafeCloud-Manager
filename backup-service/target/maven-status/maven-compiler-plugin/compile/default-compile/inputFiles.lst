@@ -1,0 +1,6 @@
+/home/miri/Downloads/manager.cloud.safe/backup-service/src/main/java/com/project/manager/cloud/safe/BackupServiceApplication.java
+/home/miri/Downloads/manager.cloud.safe/backup-service/src/main/java/com/project/manager/cloud/safe/controller/BackupController.java
+/home/miri/Downloads/manager.cloud.safe/backup-service/src/main/java/com/project/manager/cloud/safe/dto/BackupDTO.java
+/home/miri/Downloads/manager.cloud.safe/backup-service/src/main/java/com/project/manager/cloud/safe/entity/Backup.java
+/home/miri/Downloads/manager.cloud.safe/backup-service/src/main/java/com/project/manager/cloud/safe/repository/BackupRepository.java
+/home/miri/Downloads/manager.cloud.safe/backup-service/src/main/java/com/project/manager/cloud/safe/service/BackupService.java

@@ -1,0 +1,6 @@
+com/project/manager/cloud/safe/controller/LoggingController.class
+com/project/manager/cloud/safe/service/LoggingService.class
+com/project/manager/cloud/safe/entity/Logging.class
+com/project/manager/cloud/safe/dto/LoggingDTO.class
+com/project/manager/cloud/safe/repository/LoggingRepository.class
+com/project/manager/cloud/safe/LoggingServiceApplication.class

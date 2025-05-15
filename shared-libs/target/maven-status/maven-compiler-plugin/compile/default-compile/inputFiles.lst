@@ -1,0 +1,6 @@
+/home/miri/Downloads/manager.cloud.safe/shared-libs/src/main/java/com/project/manager/cloud/safe/SharedLibsApplication.java
+/home/miri/Downloads/manager.cloud.safe/shared-libs/src/main/java/com/project/manager/cloud/safe/controller/SharedLibsController.java
+/home/miri/Downloads/manager.cloud.safe/shared-libs/src/main/java/com/project/manager/cloud/safe/dto/SharedLibsDTO.java
+/home/miri/Downloads/manager.cloud.safe/shared-libs/src/main/java/com/project/manager/cloud/safe/entity/SharedLibs.java
+/home/miri/Downloads/manager.cloud.safe/shared-libs/src/main/java/com/project/manager/cloud/safe/repository/SharedLibsRepository.java
+/home/miri/Downloads/manager.cloud.safe/shared-libs/src/main/java/com/project/manager/cloud/safe/service/SharedLibsService.java

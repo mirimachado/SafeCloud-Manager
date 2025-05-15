@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  config-server:
+    build: ./config-server
+    ports:
+      - "8888:8888"
+
+  discovery-server:
+    build: ./discovery-server
+    ports:
+      - "8761:8761"
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+
+  dashboard-service:
+    build: ./dashboard-service
+    ports:
+      - "8094:8094"
+
+  alert-service:
+    build: ./alert-service
+    ports:
+      - "8081:8081"
+
+  auditlog-service:
+    build: ./auditlog-service
+    ports:
+      - "8082:8082"
+
+  authentication-service:
+    build: ./authentication-service
+    ports:
+      - "8083:8083"
+
+  backup-service:
+    build: ./backup-service
+    ports:
+      - "8084:8084"
+
+  logging-service:
+    build: ./logging-service
+    ports:
+      - "8085:8085"
+
+  notification-service:
+    build: ./notification-service
+    ports:
+      - "8086:8086"
+
+  user-service:
+    build: ./user-service
+    ports:
+      - "8087:8087"
+
+  vault-service:
+    build: ./vault-service
+    ports:
+      - "8200:8200"
+
+  # Opcional: serviço para bibliotecas compartilhadas (normalmente não é executado como serviço)
+  # shared-libs:
+  #   build: ./shared-libs
+  #   ports: []

@@ -1,0 +1,6 @@
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/ConfigServerApplication.java
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/dto/ConfigServerDTO.java
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/service/ConfigServerService.java
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/controller/ConfigServerController.java
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/repository/ConfigServerRepository.java
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/entity/ConfigServer.java
