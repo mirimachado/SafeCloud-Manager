@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="alert-service" />
+        <module name="user-service" />
+        <module name="vault-service" />
+        <module name="logging-service" />
+        <module name="notification-service" />
+        <module name="auditlog-service" />
+        <module name="config-server" />
+        <module name="authentication-service" />
+        <module name="discovery-server" />
+        <module name="dashboard-service" />
+        <module name="api-gateway" />
+        <module name="backup-service" />
+        <module name="shared-libs" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
