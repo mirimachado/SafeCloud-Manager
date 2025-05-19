@@ -1,6 +1,6 @@
 /home/miri/Downloads/manager.cloud.safe/alert-service/src/main/java/com/project/manager/cloud/safe/AlertServiceApplication.java
+/home/miri/Downloads/manager.cloud.safe/alert-service/src/main/java/com/project/manager/cloud/safe/repository/AlertServiceRepository.java
 /home/miri/Downloads/manager.cloud.safe/alert-service/src/main/java/com/project/manager/cloud/safe/controller/AlertServiceController.java
 /home/miri/Downloads/manager.cloud.safe/alert-service/src/main/java/com/project/manager/cloud/safe/dto/AlertServiceDTO.java
 /home/miri/Downloads/manager.cloud.safe/alert-service/src/main/java/com/project/manager/cloud/safe/entity/AlertService.java
-/home/miri/Downloads/manager.cloud.safe/alert-service/src/main/java/com/project/manager/cloud/safe/repository/AlertServiceRepository.java
 /home/miri/Downloads/manager.cloud.safe/alert-service/src/main/java/com/project/manager/cloud/safe/service/AlertServiceService.java

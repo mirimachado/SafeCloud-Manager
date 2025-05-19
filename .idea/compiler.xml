@@ -6,19 +6,27 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="alert-service" />
-        <module name="user-service" />
-        <module name="vault-service" />
-        <module name="logging-service" />
-        <module name="notification-service" />
-        <module name="auditlog-service" />
         <module name="config-server" />
+      </profile>
+      <profile name="Annotation profile for manager-cloud-safe" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
+        </processorPath>
+        <module name="auditlog-service" />
         <module name="authentication-service" />
         <module name="discovery-server" />
+        <module name="alert-service" />
         <module name="dashboard-service" />
         <module name="api-gateway" />
         <module name="backup-service" />
         <module name="shared-libs" />
+        <module name="user-service" />
+        <module name="vault-service" />
+        <module name="logging-service" />
+        <module name="notification-service" />
       </profile>
     </annotationProcessing>
   </component>
