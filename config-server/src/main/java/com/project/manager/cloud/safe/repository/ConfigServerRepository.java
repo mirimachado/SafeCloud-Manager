@@ -1,4 +1,12 @@
 package com.project.manager.cloud.safe.repository;
 
-public interface ConfigServerRepository {
+import com.project.manager.cloud.safe.entity.ConfigServer;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface ConfigServerRepository extends JpaRepository<ConfigServer, Long> {
+    @Override
+    Optional<ConfigServer> findById(Long id);
+
 }
