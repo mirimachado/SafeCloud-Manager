@@ -1,4 +1,4 @@
 package com.project.manager.cloud.safe.dto;
 
-public class ApiKeyDTO {
+public record BackupResponseDTO() {
 }

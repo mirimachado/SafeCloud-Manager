@@ -1,4 +1,4 @@
 package com.project.manager.cloud.safe.dto;
 
-public class AccessControlEntryDTO {
+public record DashboardResponseDTO() {
 }
