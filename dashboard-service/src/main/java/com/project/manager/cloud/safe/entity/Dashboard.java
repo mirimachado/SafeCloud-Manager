@@ -2,23 +2,28 @@ package com.project.manager.cloud.safe.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity(name = "dashboard")
 @Table(name = "dashboard")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@CrossOrigin
 public class Dashboard {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     @NotNull
-    private Long userId;
+    private UUID userId;
     @NotNull
     private String configJson;
     @CreationTimestamp
@@ -28,33 +33,10 @@ public class Dashboard {
 
     }
 
-    public Dashboard(String configJson, Long userId, LocalDateTime lastUpdated) {
+    public Dashboard(String configJson, UUID userId, LocalDateTime lastUpdated) {
         this.configJson = configJson;
         this.userId = userId;
         this.lastUpdated = lastUpdated;
     }
 
-    public LocalDateTime getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(LocalDateTime lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
-
-    public String getConfigJson() {
-        return configJson;
-    }
-
-    public void setConfigJson(String configJson) {
-        this.configJson = configJson;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 }

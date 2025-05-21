@@ -2,20 +2,25 @@ package com.project.manager.cloud.safe.systemsettings.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.UUID;
 
-@Entity(name = "systemsettings")
-@Table(name = "systemsettings")
+@Entity(name = "system_settings")
+@Table(name = "system_settings")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@CrossOrigin
 public class SystemSettings {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     @NotNull
     private String key;
     @NotNull
@@ -33,27 +38,5 @@ public class SystemSettings {
         this.updatedAt = updatedAt;
     }
 
-    public String getKey() {
-        return key;
-    }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 }

@@ -1,20 +1,30 @@
 package com.project.manager.cloud.safe.usersettings.entity;
 
+import com.project.manager.cloud.safe.entity.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import lombok.NoArgsConstructor;
 
-@Entity(name = "usersettings")
-@Table(name = "usersettings")
+import java.util.UUID;
+
+
+@Entity(name = "user_settings")
+@Table(name = "user_settings")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@CrossOrigin
 public class UserSettings {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long userId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     @NotNull
     private String theme;
     @NotNull
@@ -24,33 +34,9 @@ public class UserSettings {
 
     }
 
-    public UserSettings(Long userId, String theme, String language) {
-        this.userId = userId;
+    public UserSettings(String theme, String language) {
         this.theme = theme;
         this.language = language;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getTheme() {
-        return theme;
-    }
-
-    public void setTheme(String theme) {
-        this.theme = theme;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
 }

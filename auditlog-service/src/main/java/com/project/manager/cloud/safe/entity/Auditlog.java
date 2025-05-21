@@ -1,78 +1,65 @@
 package com.project.manager.cloud.safe.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.web.bind.annotation.CrossOrigin;
+
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-@Entity(name = "auditlogs")
-@Table(name = "auditlogs")
+@Entity(name = "audit_logs")
+@Table(name = "audit_logs")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@CrossOrigin
 public class Auditlog {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     @NotNull
-    private Long userId;
+    private UUID userId;
     @NotNull
     private String action;
     @CreationTimestamp
-    private LocalDateTime timesTamp;
-
+    private LocalDateTime timestamp;
+    @NotBlank
     private String details;
 
-    public Auditlog(){
+    @Column(length = 100)
+    private String ipAddress;
 
-    }
+    @Column(length = 500)
+    private String userAgent;
 
-    public Auditlog(Long userId, String action, LocalDateTime timesTamp, String details) {
+    @Column(length = 100)
+    private String entityAffected;
+
+    @Column(length = 100)
+    private String entityId;
+
+    @Column(nullable = false)
+    private Boolean success;
+
+    @Column(length = 50)
+    private String method;
+
+    @Column(length = 100)
+    private String module;
+
+    @Column(length = 1000)
+    private String errorMessage;
+
+    public Auditlog(UUID userId, String action, LocalDateTime timestamp, String details) {
         this.userId = userId;
         this.action = action;
-        this.timesTamp = timesTamp;
+        this.timestamp = timestamp;
         this.details = details;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
-    }
-
-    public LocalDateTime getTimesTamp() {
-        return timesTamp;
-    }
-
-    public void setTimesTamp(LocalDateTime timesTamp) {
-        this.timesTamp = timesTamp;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

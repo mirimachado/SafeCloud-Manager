@@ -2,21 +2,26 @@ package com.project.manager.cloud.safe.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-@Entity(name = "discoveryserver")
-@Table(name = "discoveryserver")
+@Entity(name = "discovery_server")
+@Table(name = "discovery_server")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@CrossOrigin
 public class DiscoveryServer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @NotNull
     private String serviceName;
@@ -35,27 +40,5 @@ public class DiscoveryServer {
         this.lastSeen = lastSeen;
     }
 
-    public String getServiceName() {
-        return serviceName;
-    }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
-
-    public String getEndpoint() {
-        return endpoint;
-    }
-
-    public void setEndpoint(String endpoint) {
-        this.endpoint = endpoint;
-    }
-
-    public LocalDateTime getLastSeen() {
-        return lastSeen;
-    }
-
-    public void setLastSeen(LocalDateTime lastSeen) {
-        this.lastSeen = lastSeen;
-    }
 }

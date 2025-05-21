@@ -1,28 +1,58 @@
 package com.project.manager.cloud.safe.organization.entity;
 
+import com.project.manager.cloud.safe.entity.User;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @Entity(name = "organization")
 @Table(name = "organization")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@CrossOrigin
 public class Organization {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     @NotNull
     private String name;
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedAt;
+
     private Boolean active;
 
-    public Organization(){
+    @OneToMany(mappedBy = "organization")
+    private List<User> users;
+
+    private String logoUrl;
+
+    @NotBlank
+    private String contactEmail;
+    @NotBlank
+    private String contactPhone;
+    private String description;
+
+
+
+
+    public Organization() {
 
     }
 
@@ -32,27 +62,4 @@ public class Organization {
         this.active = true;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
 }

@@ -1,21 +1,29 @@
 package com.project.manager.cloud.safe.filemetadata.entity;
 
+import com.project.manager.cloud.safe.file.entity.File;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import lombok.NoArgsConstructor;
 
-@Entity(name = "filemetadata")
-@Table(name = "filemetadata")
+import java.util.UUID;
+
+@Entity(name = "file_meta_data")
+@Table(name = "file_meta_data")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@CrossOrigin
 public class FileMetaData {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NotNull
-    private String fileId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+    @OneToOne
+    @JoinColumn(name = "file_id")
+    private File file;
     @NotNull
     private String key;
     @NotNull
@@ -25,34 +33,9 @@ public class FileMetaData {
 
     }
 
-
-    public FileMetaData(String fileId, String key, String value) {
-        this.fileId = fileId;
+    public FileMetaData(String key, String value) {
         this.key = key;
         this.value = value;
     }
 
-    public String getFileId() {
-        return fileId;
-    }
-
-    public void setFileId(String fileId) {
-        this.fileId = fileId;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
 }

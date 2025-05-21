@@ -3,24 +3,30 @@ package com.project.manager.cloud.safe.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import lombok.NoArgsConstructor;
+
 
 import java.util.Date;
+import java.util.UUID;
 
-@Entity(name = "accesstoken")
-@Table(name = "accesstoken")
+@Entity(name = "access_token")
+@Table(name = "access_token")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@CrossOrigin
 public class AccessToken {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     @NotNull
     private String token;
-
-    private Long userId;
+    @NotNull
+    private UUID userId;
     @NotBlank
     private Date expiresAt;
     @NotBlank
@@ -30,42 +36,12 @@ public class AccessToken {
 
     }
 
-    public AccessToken(String token, Long userId, Date expiresAt, Date created) {
+    public AccessToken(String token, UUID userId, Date expiresAt, Date created) {
         this.token = token;
         this.userId = userId;
         this.expiresAt = expiresAt;
         this.created = created;
     }
 
-    public String getToken() {
-        return token;
-    }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Date getExpiresAt() {
-        return expiresAt;
-    }
-
-    public void setExpiresAt(Date expiresAt) {
-        this.expiresAt = expiresAt;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
 }

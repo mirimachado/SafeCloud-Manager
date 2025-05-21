@@ -2,20 +2,26 @@ package com.project.manager.cloud.safe.notificationconfig.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import lombok.NoArgsConstructor;
 
-@Entity(name = "notificationconfig")
-@Table(name = "notificationconfig")
+import java.util.UUID;
+
+@Entity(name = "notification_config")
+@Table(name = "notification_config")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@CrossOrigin
 public class NotificationConfig {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     @NotNull
-    private Long userId;
+    private UUID userId;
     @NotNull
     private Boolean emailEnabled;
     @NotNull
@@ -27,42 +33,12 @@ public class NotificationConfig {
 
     }
 
-    public NotificationConfig(Long userId, Boolean emailEnabled, Boolean smsEnabled, Boolean pushEnabled) {
+    public NotificationConfig(UUID userId, Boolean emailEnabled, Boolean smsEnabled, Boolean pushEnabled) {
         this.userId = userId;
         this.emailEnabled = true;
         this.smsEnabled = false;
         this.pushEnabled = true;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Boolean getEmailEnabled() {
-        return emailEnabled;
-    }
-
-    public void setEmailEnabled(Boolean emailEnabled) {
-        this.emailEnabled = emailEnabled;
-    }
-
-    public Boolean getSmsEnabled() {
-        return smsEnabled;
-    }
-
-    public void setSmsEnabled(Boolean smsEnabled) {
-        this.smsEnabled = smsEnabled;
-    }
-
-    public Boolean getPushEnabled() {
-        return pushEnabled;
-    }
-
-    public void setPushEnabled(Boolean pushEnabled) {
-        this.pushEnabled = pushEnabled;
-    }
 }

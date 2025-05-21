@@ -1,21 +1,27 @@
 package com.project.manager.cloud.safe.file.entity;
 
+import com.project.manager.cloud.safe.filemetadata.entity.FileMetaData;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Entity(name = "file")
 @Table(name = "file")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@CrossOrigin
 public class File {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     @NotNull
     private String name;
     @NotNull
@@ -24,13 +30,16 @@ public class File {
     private Long size;
     private Date uploadDate;
     @NotNull
-    private Long ownerId;
+    private UUID ownerId;
+
+    @OneToOne(mappedBy = "file", cascade = CascadeType.ALL)
+    private FileMetaData metaData;
 
     public File(){
 
     }
 
-    public File(String name, String type, Long size, Date uploadDate, Long ownerId) {
+    public File(String name, String type, Long size, Date uploadDate, UUID ownerId) {
         this.name = name;
         this.type = type;
         this.size = size;
@@ -38,43 +47,4 @@ public class File {
         this.ownerId = ownerId;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Long getSize() {
-        return size;
-    }
-
-    public void setSize(Long size) {
-        this.size = size;
-    }
-
-    public Date getUploadDate() {
-        return uploadDate;
-    }
-
-    public void setUploadDate(Date uploadDate) {
-        this.uploadDate = uploadDate;
-    }
-
-    public Long getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(Long ownerId) {
-        this.ownerId = ownerId;
-    }
 }

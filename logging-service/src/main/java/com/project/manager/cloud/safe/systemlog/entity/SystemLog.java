@@ -3,68 +3,42 @@ package com.project.manager.cloud.safe.systemlog.entity;
 import com.project.manager.cloud.safe.systemlog.enums.LevelLog;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.UUID;
 
-@Entity(name = "systemlog")
-@Table(name = "systemlog")
+@Entity(name = "system_log")
+@Table(name = "system_log")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@CrossOrigin
 public class SystemLog {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     @NotNull
     private LevelLog level;
     @NotNull
     private String message;
     private Date timestamp;
     @NotNull
-    private Long userId;
+    private UUID userId;
 
     public SystemLog(){
 
     }
 
-    public SystemLog(LevelLog level, String message, Date timestamp, Long userId) {
+    public SystemLog(LevelLog level, String message, Date timestamp, UUID userId) {
         this.level = level;
         this.message = message;
         this.timestamp = timestamp;
         this.userId = userId;
     }
 
-    public LevelLog getLevel() {
-        return level;
-    }
-
-    public void setLevel(LevelLog level) {
-        this.level = level;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 }

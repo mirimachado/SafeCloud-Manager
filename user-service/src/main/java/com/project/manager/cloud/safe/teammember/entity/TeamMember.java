@@ -1,58 +1,42 @@
 package com.project.manager.cloud.safe.teammember.entity;
 
+import com.project.manager.cloud.safe.entity.User;
 import com.project.manager.cloud.safe.enums.UserRole;
+import com.project.manager.cloud.safe.team.entity.Team;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import lombok.NoArgsConstructor;
 
-@Entity(name = "teammember")
-@Table(name = "teammember")
+import java.util.UUID;
+
+@Entity(name = "team_member")
+@Table(name = "team_member")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@CrossOrigin
 public class TeamMember {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NotNull
-    private Long teamId;
-    @NotNull
-    private Long userId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     @NotNull
     private UserRole role;
 
-    public TeamMember(){
+    private String description;
 
-    }
-
-    public TeamMember(Long teamId, Long userId, UserRole role) {
-        this.teamId = teamId;
-        this.userId = userId;
-        this.role = role;
-    }
-
-    public Long getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(Long teamId) {
-        this.teamId = teamId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public UserRole getRole() {
-        return role;
-    }
-
-    public void setRole(UserRole role) {
+    public TeamMember(Team team, User user, UserRole role) {
+        this.team = team;
+        this.user = user;
         this.role = role;
     }
 }

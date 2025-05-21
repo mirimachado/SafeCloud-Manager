@@ -2,20 +2,26 @@ package com.project.manager.cloud.safe.healthcheck.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import lombok.NoArgsConstructor;
+
 
 import java.util.Date;
+import java.util.UUID;
 
-@Entity(name = "healthcheck")
-@Table(name = "healthcheck")
+@Entity(name = "health_check")
+@Table(name = "health_check")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@CrossOrigin
 public class HealthCheck {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     @NotNull
     private String serviceName;
     @NotNull
@@ -33,27 +39,5 @@ public class HealthCheck {
         this.checkedAt = checkedAt;
     }
 
-    public String getServiceName() {
-        return serviceName;
-    }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Date getCheckedAt() {
-        return checkedAt;
-    }
-
-    public void setCheckedAt(Date checkedAt) {
-        this.checkedAt = checkedAt;
-    }
 }

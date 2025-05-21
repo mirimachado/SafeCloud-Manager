@@ -1,23 +1,30 @@
 package com.project.manager.cloud.safe.entity;
 
 import com.project.manager.cloud.safe.enums.UserRole;
+import com.project.manager.cloud.safe.organization.entity.Organization;
+import com.project.manager.cloud.safe.teammember.entity.TeamMember;
+import com.project.manager.cloud.safe.usersettings.entity.UserSettings;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.springframework.web.bind.annotation.CrossOrigin;
+
+import java.util.List;
+import java.util.UUID;
 
 @Entity(name = "users")
 @Table(name = "users")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@CrossOrigin
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     @NotBlank
     @Size(min = 2, max = 100)
     private String name;
@@ -34,10 +41,22 @@ public class User {
 
     @Column(unique = true)
     private String token;
+    @ManyToOne
+    @JoinColumn(name = "organization_id")
+    private Organization organization;
 
-    public User(){
+    @OneToMany(mappedBy = "user")
+    private List<TeamMember> teamMemberships;
 
-    }
+    //@OneToMany(mappedBy = "user")
+    //private List<Auditlog> auditLogs;
+
+    //@OneToMany(mappedBy = "user")
+    //private List<AuthToken> authTokens;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserSettings> settings;
+
 
     public User(String token,
                 String password,
@@ -53,59 +72,5 @@ public class User {
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public UserRole getRole() {
-        return role;
-    }
-
-    public void setRole(UserRole role) {
-        this.role = role;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
 }
