@@ -5,22 +5,33 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-public record AlertServiceRequestDTO(@NotBlank
-                                     String message,
+public record AlertServiceRequestDTO(
+        UUID id,
+        @NotBlank
+        String message,
+
                                      @NotNull
-                                     SeverityAlerts severity,
-                                     LocalDateTime timestamp,
+        SeverityAlerts severity,
+
+                                     @NotNull
+        Boolean resolved,
+
                                      LocalDateTime resolvedAt,
                                      String resolutionNote,
                                      String source,
                                      String category,
                                      String context,
                                      String assignedTo,
-                                     String code,
+
+                                     @NotBlank
+        String code,
+
                                      String relatedEntityId,
                                      String relatedEntityType,
-                                     Integer priority
+                                     Integer priority) {
 
-                                     ) {
 }
+
+

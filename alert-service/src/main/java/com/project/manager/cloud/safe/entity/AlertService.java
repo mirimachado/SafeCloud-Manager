@@ -4,10 +4,7 @@ import com.project.manager.cloud.safe.enums.SeverityAlerts;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -19,6 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class AlertService {
 
     @Id
@@ -73,9 +71,5 @@ public class AlertService {
     @Column
     private Integer priority;
 
-    public AlertService(String message, SeverityAlerts severity) {
-        this.message = message;
-        this.severity = severity;
-        this.resolved = false;
-    }
+
 }

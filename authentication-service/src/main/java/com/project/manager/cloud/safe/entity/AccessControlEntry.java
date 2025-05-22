@@ -2,11 +2,10 @@ package com.project.manager.cloud.safe.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity(name = "access_control_entry")
@@ -15,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class AccessControlEntry {
 
     @Id
@@ -27,14 +27,28 @@ public class AccessControlEntry {
     @NotNull
     private String permission;
 
-    public AccessControlEntry(){
+    @Column(nullable = true)
+    private UUID roleId;
 
-    }
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime grantedAt;
 
-    public AccessControlEntry(UUID userId, String resource, String permission) {
-        this.userId = userId;
-        this.resource = resource;
-        this.permission = permission;
-    }
+    @Column(nullable = true)
+    private UUID grantedBy;
+
+    @Column(nullable = true)
+    private LocalDateTime expiresAt;
+
+    @Column(nullable = false)
+    private boolean active = true;
+
+    @Column(columnDefinition = "TEXT")
+    private String conditions;
+
+    @Column(length = 500)
+    private String notes;
+
+
 
 }

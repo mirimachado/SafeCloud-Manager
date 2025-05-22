@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -18,7 +19,6 @@
         <module name="auditlog-service" />
         <module name="authentication-service" />
         <module name="discovery-server" />
-        <module name="alert-service" />
         <module name="dashboard-service" />
         <module name="api-gateway" />
         <module name="backup-service" />
@@ -27,6 +27,15 @@
         <module name="vault-service" />
         <module name="logging-service" />
         <module name="notification-service" />
+      </profile>
+      <profile name="Annotation profile for alert-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.26/lombok-1.18.26.jar" />
+        </processorPath>
+        <module name="alert-service" />
       </profile>
     </annotationProcessing>
   </component>

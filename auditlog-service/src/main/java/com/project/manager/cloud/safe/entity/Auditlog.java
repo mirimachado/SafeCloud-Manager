@@ -3,10 +3,7 @@ package com.project.manager.cloud.safe.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 
@@ -19,6 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class Auditlog {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -56,10 +54,5 @@ public class Auditlog {
     @Column(length = 1000)
     private String errorMessage;
 
-    public Auditlog(UUID userId, String action, LocalDateTime timestamp, String details) {
-        this.userId = userId;
-        this.action = action;
-        this.timestamp = timestamp;
-        this.details = details;
-    }
+
 }

@@ -31,6 +31,36 @@ public class Backup {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    @Column(length = 255, nullable = false)
+    private String fileName;
+
+    @Column(nullable = false)
+    private Long fileSize;
+
+    @Column(length = 100, nullable = false)
+    private String fileType;
+
+    @Column(length = 100, nullable = false)
+    private String storageLocation;
+
+    @Column(length = 50, nullable = false)
+    private String status;
+
+    @Column(length = 256, unique = true, nullable = false)
+    private String hashChecksum;
+
+    @Column(nullable = true)
+    private LocalDateTime expiresAt;
+
+    @Column(nullable = true)
+    private LocalDateTime lastVerifiedAt;
+
+    @Column(nullable = false)
+    private boolean deleted = false;
+
+    @Column(length = 500)
+    private String notes;
+
     public Backup(){
 
     }
