@@ -12,6 +12,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/access_control_entry")
 public class AccessControlEntryController {
+
     @Autowired
     private AccessControlEntryService accessControlEntryService;
 

@@ -3,10 +3,7 @@ package com.project.manager.cloud.safe.filemetadata.entity;
 import com.project.manager.cloud.safe.file.entity.File;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -16,6 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class FileMetaData {
 
     @Id
@@ -28,14 +26,5 @@ public class FileMetaData {
     private String key;
     @NotNull
     private String value;
-
-    public FileMetaData(){
-
-    }
-
-    public FileMetaData(String key, String value) {
-        this.key = key;
-        this.value = value;
-    }
 
 }

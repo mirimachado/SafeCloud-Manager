@@ -6,7 +6,8 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
 
-public record ApiKeyRequestDTO(@NotBlank
+public record ApiKeyRequestDTO(UUID id,
+                               @NotBlank
                                String key,
                                @NotBlank
                                String label,

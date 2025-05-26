@@ -2,10 +2,7 @@ package com.project.manager.cloud.safe.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
@@ -17,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class DiscoveryServer {
 
     @Id
@@ -29,16 +27,6 @@ public class DiscoveryServer {
     private String endpoint;
     @UpdateTimestamp
     private LocalDateTime lastSeen;
-
-    public DiscoveryServer(){
-
-    }
-
-    public DiscoveryServer(String serviceName, String endpoint, LocalDateTime lastSeen) {
-        this.serviceName = serviceName;
-        this.endpoint = endpoint;
-        this.lastSeen = lastSeen;
-    }
 
 
 }

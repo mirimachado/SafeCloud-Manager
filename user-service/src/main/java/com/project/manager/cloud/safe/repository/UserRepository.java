@@ -4,8 +4,18 @@ import com.project.manager.cloud.safe.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
+import java.util.UUID;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    @Override
-    Optional<User> findById(Long id);
+public interface UserRepository extends JpaRepository<User, UUID> {
+    Optional<User> findByEmailIgnoreCase(String email);
+
+    Optional<User> findByToken(String token);
+
+    Optional<User> findByNameIgnoreCase(String name);
+
+    Optional<User> findByEmailIgnoreCaseAndIdNot(String email, UUID id);
+
+    Optional<User> findByTokenAndIdNot(String token, UUID id);
+
+    Optional<User> findByNameIgnoreCaseAndIdNot(String name, UUID id);
 }

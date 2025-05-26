@@ -4,8 +4,9 @@ import com.project.manager.cloud.safe.entity.SharedLibs;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
+import java.util.UUID;
 
-public interface SharedLibsRepository extends JpaRepository<SharedLibs, Long> {
+public interface SharedLibsRepository extends JpaRepository<SharedLibs, UUID> {
     @Override
-    Optional<SharedLibs> findById(Long id);
+    Optional<SharedLibs> findById(UUID id);
 }

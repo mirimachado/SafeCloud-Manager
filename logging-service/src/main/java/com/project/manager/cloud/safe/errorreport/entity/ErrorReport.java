@@ -2,10 +2,7 @@ package com.project.manager.cloud.safe.errorreport.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.UUID;
@@ -16,6 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class ErrorReport {
 
     @Id
@@ -29,15 +27,6 @@ public class ErrorReport {
     private String stackTrace;
     private Date createdAt;
 
-    public ErrorReport(){
 
-    }
-
-    public ErrorReport(UUID userId, String errorMessage, String stackTrace, Date createdAt) {
-        this.userId = userId;
-        this.errorMessage = errorMessage;
-        this.stackTrace = stackTrace;
-        this.createdAt = createdAt;
-    }
 
 }

@@ -4,14 +4,16 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-public record LoggingRequestDTO(
+public record LoggingRequestDTO(UUID id,
+
         @NotBlank
         String level,
-        @NotBlank
+                                @NotBlank
         String message,
-        @NotNull
+                                @NotNull
         LocalDateTime timestamp,
-        String source
+                                String source
         ) {
 }

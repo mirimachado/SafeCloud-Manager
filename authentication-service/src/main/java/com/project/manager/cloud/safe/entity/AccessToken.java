@@ -3,10 +3,7 @@ package com.project.manager.cloud.safe.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 import java.util.Date;
@@ -18,6 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class AccessToken {
 
     @Id
@@ -32,16 +30,6 @@ public class AccessToken {
     @NotBlank
     private Date created;
 
-    public AccessToken(){
-
-    }
-
-    public AccessToken(String token, UUID userId, Date expiresAt, Date created) {
-        this.token = token;
-        this.userId = userId;
-        this.expiresAt = expiresAt;
-        this.created = created;
-    }
 
 
 }

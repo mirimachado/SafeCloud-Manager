@@ -2,10 +2,7 @@ package com.project.manager.cloud.safe.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
@@ -17,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class ApiKey {
 
     @Id
@@ -33,15 +31,6 @@ public class ApiKey {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    public ApiKey(){
 
-    }
-
-    public ApiKey(String key, String label, UUID userId, Date createdAt) {
-        this.key = key;
-        this.label = label;
-        this.userId = userId;
-        this.createdAt = createdAt;
-    }
 
 }

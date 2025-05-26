@@ -4,8 +4,9 @@ import com.project.manager.cloud.safe.filemetadata.entity.FileMetaData;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
+import java.util.UUID;
 
-public interface FileMetaDataRepository extends JpaRepository<FileMetaData, Long> {
+public interface FileMetaDataRepository extends JpaRepository<FileMetaData, UUID> {
     @Override
-    Optional<FileMetaData> findById(Long id);
+    Optional<FileMetaData> findById(UUID id);
 }

@@ -6,7 +6,8 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
 
-public record AccessTokenRequestDTO(@NotBlank
+public record AccessTokenRequestDTO(UUID id,
+                                    @NotBlank
                                     String token,
                                     @NotNull
                                     UUID userId,

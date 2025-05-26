@@ -3,10 +3,7 @@ package com.project.manager.cloud.safe.usersettings.entity;
 import com.project.manager.cloud.safe.entity.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -17,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class UserSettings {
 
     @Id
@@ -30,13 +28,5 @@ public class UserSettings {
     @NotNull
     private String language;
 
-    public UserSettings(){
-
-    }
-
-    public UserSettings(String theme, String language) {
-        this.theme = theme;
-        this.language = language;
-    }
 
 }

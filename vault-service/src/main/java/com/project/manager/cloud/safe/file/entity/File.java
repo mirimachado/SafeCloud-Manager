@@ -3,10 +3,7 @@ package com.project.manager.cloud.safe.file.entity;
 import com.project.manager.cloud.safe.filemetadata.entity.FileMetaData;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.UUID;
@@ -17,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class File {
 
     @Id
@@ -35,16 +33,6 @@ public class File {
     @OneToOne(mappedBy = "file", cascade = CascadeType.ALL)
     private FileMetaData metaData;
 
-    public File(){
 
-    }
-
-    public File(String name, String type, Long size, Date uploadDate, UUID ownerId) {
-        this.name = name;
-        this.type = type;
-        this.size = size;
-        this.uploadDate = uploadDate;
-        this.ownerId = ownerId;
-    }
 
 }

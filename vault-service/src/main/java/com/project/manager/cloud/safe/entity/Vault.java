@@ -4,10 +4,7 @@ package com.project.manager.cloud.safe.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -19,6 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class Vault {
 
     @Id
@@ -34,15 +32,6 @@ public class Vault {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    public Vault(){
 
-    }
-
-    public Vault(UUID userId, String dataKey, String dataValue, LocalDateTime createdAt) {
-        this.userId = userId;
-        this.dataKey = dataKey;
-        this.dataValue = dataValue;
-        this.createdAt = createdAt;
-    }
 
 }

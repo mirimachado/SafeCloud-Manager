@@ -3,10 +3,7 @@ package com.project.manager.cloud.safe.team.entity;
 import com.project.manager.cloud.safe.teammember.entity.TeamMember;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -20,6 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class Team {
 
     @Id
@@ -43,13 +41,4 @@ public class Team {
     private List<TeamMember> members;
 
 
-    public Team(){
-
-    }
-
-    public Team(UUID organizationId, String name, Date createdAt) {
-        this.organizationId = organizationId;
-        this.name = name;
-        this.createdAt = createdAt;
-    }
 }

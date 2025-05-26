@@ -3,10 +3,7 @@ package com.project.manager.cloud.safe.config.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.UUID;
@@ -17,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class Config {
 
     @Id
@@ -29,14 +27,6 @@ public class Config {
 
     private Boolean system;
 
-    public Config(){
 
-    }
-
-    public Config(String key, String value, Boolean system) {
-        this.key = key;
-        this.value = value;
-        this.system = system;
-    }
 
 }

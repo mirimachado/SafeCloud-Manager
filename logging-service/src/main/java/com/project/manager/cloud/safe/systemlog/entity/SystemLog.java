@@ -3,10 +3,7 @@ package com.project.manager.cloud.safe.systemlog.entity;
 import com.project.manager.cloud.safe.systemlog.enums.LevelLog;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.UUID;
@@ -17,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class SystemLog {
 
     @Id
@@ -30,15 +28,6 @@ public class SystemLog {
     @NotNull
     private UUID userId;
 
-    public SystemLog(){
 
-    }
-
-    public SystemLog(LevelLog level, String message, Date timestamp, UUID userId) {
-        this.level = level;
-        this.message = message;
-        this.timestamp = timestamp;
-        this.userId = userId;
-    }
 
 }

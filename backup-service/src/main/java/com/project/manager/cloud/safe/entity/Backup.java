@@ -2,11 +2,8 @@ package com.project.manager.cloud.safe.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 
@@ -19,6 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class Backup {
 
     @Id
@@ -61,14 +59,6 @@ public class Backup {
     @Column(length = 500)
     private String notes;
 
-    public Backup(){
 
-    }
-
-    public Backup(UUID userId, String filePath, LocalDateTime createdAt) {
-        this.userId = userId;
-        this.filePath = filePath;
-        this.createdAt = createdAt;
-    }
 
 }

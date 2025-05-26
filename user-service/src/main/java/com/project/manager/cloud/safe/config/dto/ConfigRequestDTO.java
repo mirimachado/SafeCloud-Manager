@@ -1,6 +1,18 @@
 package com.project.manager.cloud.safe.config.dto;
 
-public record ConfigRequestDTO(String key,
-                               String value,
-                               Boolean system) {
-}
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.UUID;
+
+public record ConfigRequestDTO(
+        UUID id,
+
+        @NotBlank
+        String key,
+
+        @NotNull
+        String value,
+
+        Boolean system
+) {}

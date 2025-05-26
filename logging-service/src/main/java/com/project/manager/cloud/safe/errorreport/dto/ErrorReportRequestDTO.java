@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.UUID;
 
-public record ErrorReportRequestDTO(
+public record ErrorReportRequestDTO(UUID id,
                                     @NotNull
                                     UUID userId,
                                     @NotBlank

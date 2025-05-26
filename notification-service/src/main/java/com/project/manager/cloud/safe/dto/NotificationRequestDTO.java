@@ -6,13 +6,14 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public record NotificationRequestDTO(
+public record NotificationRequestDTO(UUID id,
         @NotBlank
         String title,
         @NotBlank
         String message,
         @NotNull
         UUID userId,
-        LocalDateTime sentAt
+        LocalDateTime sentAt,
+                                     Boolean read
         ) {
 }

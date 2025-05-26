@@ -3,10 +3,7 @@ package com.project.manager.cloud.safe.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
@@ -18,6 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class Notification {
 
     @Id
@@ -36,16 +34,5 @@ public class Notification {
     private LocalDateTime sentAt;
 
 
-    public Notification(){
-
-    }
-
-    public Notification(String title, String message, UUID userId, Boolean read, LocalDateTime sentAt) {
-        this.title = title;
-        this.message = message;
-        this.userId = userId;
-        this.read = false;
-        this.sentAt = sentAt;
-    }
 
 }

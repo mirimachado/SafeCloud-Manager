@@ -2,10 +2,7 @@ package com.project.manager.cloud.safe.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -17,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Builder
 public class Dashboard {
 
     @Id
@@ -29,14 +27,6 @@ public class Dashboard {
     @CreationTimestamp
     private LocalDateTime lastUpdated;
 
-    public Dashboard(){
 
-    }
-
-    public Dashboard(String configJson, UUID userId, LocalDateTime lastUpdated) {
-        this.configJson = configJson;
-        this.userId = userId;
-        this.lastUpdated = lastUpdated;
-    }
 
 }

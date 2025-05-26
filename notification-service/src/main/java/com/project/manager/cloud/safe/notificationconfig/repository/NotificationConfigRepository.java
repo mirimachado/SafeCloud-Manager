@@ -4,9 +4,10 @@ import com.project.manager.cloud.safe.notificationconfig.entity.NotificationConf
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
+import java.util.UUID;
 
-public interface NotificationConfigRepository extends JpaRepository<NotificationConfig, Long> {
+public interface NotificationConfigRepository extends JpaRepository<NotificationConfig, UUID> {
 
     @Override
-    Optional<NotificationConfig> findById(Long id);
+    Optional<NotificationConfig> findById(UUID id);
 }
