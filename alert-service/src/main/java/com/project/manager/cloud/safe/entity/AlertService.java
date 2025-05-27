@@ -35,7 +35,7 @@ public class AlertService {
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
-    private LocalDateTime timestamp;
+    private LocalDateTime timestampDate;
 
     @NotNull
     @Column(nullable = false)

@@ -1,67 +1,367 @@
 version: '3.8'
 
 services:
+  # ==================== POSTGRES ====================
+  postgres-alert:
+    image: postgres:15
+    container_name: postgres-alert
+    environment:
+      POSTGRES_DB: alert_ms_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: alert_pass
+    ports:
+      - "5433:5432"
+    volumes:
+      - alert_pgdata:/var/lib/postgresql/data
+
+  postgres-auditlog:
+    image: postgres:15
+    container_name: postgres-auditlog
+    environment:
+      POSTGRES_DB: auditlog_ms_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: auditlog_pass
+    ports:
+      - "5434:5432"
+    volumes:
+      - auditlog_pgdata:/var/lib/postgresql/data
+
+  postgres-authentication:
+    image: postgres:15
+    container_name: postgres-authentication
+    environment:
+      POSTGRES_DB: authentication_ms_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: auth_pass
+    ports:
+      - "5435:5432"
+    volumes:
+      - authentication_pgdata:/var/lib/postgresql/data
+
+  postgres-backup:
+    image: postgres:15
+    container_name: postgres-backup
+    environment:
+      POSTGRES_DB: backup_ms_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: backup_pass
+    ports:
+      - "5436:5432"
+    volumes:
+      - backup_pgdata:/var/lib/postgresql/data
+
+  postgres-configserver:
+    image: postgres:15
+    container_name: postgres-configserver
+    environment:
+      POSTGRES_DB: configserver_ms_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: configserver_pass
+    ports:
+      - "5437:5432"
+    volumes:
+      - configserver_pgdata:/var/lib/postgresql/data
+
+  postgres-apigateway:
+    image: postgres:15
+    container_name: postgres-apigateway
+    environment:
+      POSTGRES_DB: apigateway_ms_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: apigateway_pass
+    ports:
+      - "5438:5432"
+    volumes:
+      - apigateway_pgdata:/var/lib/postgresql/data
+
+  postgres-dashboard:
+    image: postgres:15
+    container_name: postgres-dashboard
+    environment:
+      POSTGRES_DB: dashboard_ms_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: dashboard_pass
+    ports:
+      - "5439:5432"
+    volumes:
+      - dashboard_pgdata:/var/lib/postgresql/data
+
+  postgres-discovery:
+    image: postgres:15
+    container_name: postgres-discovery
+    environment:
+      POSTGRES_DB: discoveryserver_ms_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: discovery_pass
+    ports:
+      - "5440:5432"
+    volumes:
+      - discovery_pgdata:/var/lib/postgresql/data
+
+  postgres-logging:
+    image: postgres:15
+    container_name: postgres-logging
+    environment:
+      POSTGRES_DB: logging_ms_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: logging_pass
+    ports:
+      - "5441:5432"
+    volumes:
+      - logging_pgdata:/var/lib/postgresql/data
+
+  postgres-notification:
+    image: postgres:15
+    container_name: postgres-notification
+    environment:
+      POSTGRES_DB: notification_ms_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: notification_pass
+    ports:
+      - "5442:5432"
+    volumes:
+      - notification_pgdata:/var/lib/postgresql/data
+
+  postgres-sharedlibs:
+    image: postgres:15
+    container_name: postgres-sharedlibs
+    environment:
+      POSTGRES_DB: sharedlibs_ms_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sharedlibs_pass
+    ports:
+      - "5443:5432"
+    volumes:
+      - sharedlibs_pgdata:/var/lib/postgresql/data
+
+  postgres-user:
+    image: postgres:15
+    container_name: postgres-user
+    environment:
+      POSTGRES_DB: user_ms_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: user_pass
+    ports:
+      - "5444:5432"
+    volumes:
+      - user_pgdata:/var/lib/postgresql/data
+
+  postgres-vault:
+    image: postgres:15
+    container_name: postgres-vault
+    environment:
+      POSTGRES_DB: vault_ms_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: vault_pass
+    ports:
+      - "5445:5432"
+    volumes:
+      - vault_pgdata:/var/lib/postgresql/data
+
+  # ==================== MICROSERVIÇOS ====================
+
   config-server:
     build: ./config-server
     ports:
       - "8888:8888"
+    environment:
+      SPRING_APPLICATION_NAME: config-server
+      SERVER_PORT: 8888
+      # SUBSTITUA SEU_GITLAB_TOKEN_AQUI pelo seu token real do GitLab
+      GITLAB_TOKEN: gldt-HhW-342z6yrXTCm1Jnj3
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-configserver:5432/configserver_ms_service_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: configserver_pass
+    depends_on:
+      - postgres-configserver
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   discovery-server:
     build: ./discovery-server
     ports:
       - "8761:8761"
+    environment:
+      SPRING_APPLICATION_NAME: discovery-server
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-discovery:5432/discoveryserver_ms_service_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: discovery_pass
+    depends_on:
+      config-server:
+        condition: service_healthy
+      postgres-discovery:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   api-gateway:
     build: ./api-gateway
     ports:
       - "8080:8080"
+    environment:
+      SPRING_APPLICATION_NAME: api-gateway
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-apigateway:5432/apigateway_ms_service_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: apigateway_pass
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      postgres-apigateway:
+        condition: service_started
 
   dashboard-service:
     build: ./dashboard-service
     ports:
       - "8094:8094"
+    environment:
+      SPRING_APPLICATION_NAME: dashboard-service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-dashboard:5432/dashboard_ms_service_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: dashboard_pass
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      postgres-dashboard:
+        condition: service_started
 
   alert-service:
     build: ./alert-service
     ports:
       - "8081:8081"
+    environment:
+      SPRING_APPLICATION_NAME: alert-service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-alert:5432/alert_ms_service_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: alert_pass
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      postgres-alert:
+        condition: service_started
 
   auditlog-service:
     build: ./auditlog-service
     ports:
       - "8082:8082"
+    environment:
+      SPRING_APPLICATION_NAME: auditlog-service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-auditlog:5432/auditlog_ms_service_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: auditlog_pass
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      postgres-auditlog:
+        condition: service_started
 
   authentication-service:
     build: ./authentication-service
     ports:
       - "8083:8083"
+    environment:
+      SPRING_APPLICATION_NAME: authentication-service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-authentication:5432/authentication_ms_service_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: auth_pass
+      JWT_SECRET: seu-jwt-secret-super-seguro-aqui-deve-ser-muito-longo-e-aleatorio-com-pelo-menos-256-bits
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      postgres-authentication:
+        condition: service_started
 
   backup-service:
     build: ./backup-service
     ports:
       - "8084:8084"
+    environment:
+      SPRING_APPLICATION_NAME: backup-service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-backup:5432/backup_ms_service_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: backup_pass
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      postgres-backup:
+        condition: service_started
 
   logging-service:
     build: ./logging-service
     ports:
       - "8085:8085"
+    environment:
+      SPRING_APPLICATION_NAME: logging-service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-logging:5432/logging_ms_service_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: logging_pass
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      postgres-logging:
+        condition: service_started
 
   notification-service:
     build: ./notification-service
     ports:
       - "8086:8086"
+    environment:
+      SPRING_APPLICATION_NAME: notification-service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-notification:5432/notification_ms_service_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: notification_pass
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      postgres-notification:
+        condition: service_started
 
   user-service:
     build: ./user-service
     ports:
       - "8087:8087"
+    environment:
+      SPRING_APPLICATION_NAME: user-service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-user:5432/user_ms_service_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: user_pass
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      postgres-user:
+        condition: service_started
 
   vault-service:
     build: ./vault-service
     ports:
       - "8200:8200"
+    environment:
+      SPRING_APPLICATION_NAME: vault-service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-vault:5432/vault_ms_service_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: vault_pass
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      postgres-vault:
+        condition: service_started
 
-  # Opcional: serviço para bibliotecas compartilhadas (normalmente não é executado como serviço)
-  # shared-libs:
-  #   build: ./shared-libs
-  #   ports: []
+volumes:
+  alert_pgdata:
+  auditlog_pgdata:
+  authentication_pgdata:
+  backup_pgdata:
+  configserver_pgdata:
+  apigateway_pgdata:
+  dashboard_pgdata:
+  discovery_pgdata:
+  logging_pgdata:
+  notification_pgdata:
+  sharedlibs_pgdata:
+  user_pgdata:
+  vault_pgdata:
