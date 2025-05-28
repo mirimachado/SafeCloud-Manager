@@ -18,4 +18,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
     Optional<User> findByTokenAndIdNot(String token, UUID id);
 
     Optional<User> findByNameIgnoreCaseAndIdNot(String name, UUID id);
+
+    Optional<User> findByUsername(String username);
 }

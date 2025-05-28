@@ -10,6 +10,8 @@ import java.util.UUID;
 
 public record UserRequestDTO(
         UUID id,
+        @NotBlank
+        String username,
 
         @NotBlank(message = "O nome é obrigatório")
         @Size(min = 2, max = 100, message = "O nome deve ter entre 2 e 100 caracteres")

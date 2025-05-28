@@ -45,6 +45,7 @@ public class UserService {
 
         User user = User.builder()
                 .name(dto.name())
+                .name(dto.username())
                 .email(dto.email())
                 .password(dto.password())
                 .role(dto.role() != null ? dto.role() : UserRole.USER)
@@ -84,6 +85,7 @@ public class UserService {
         user.setEmail(dto.email());
         user.setRole(dto.role() != null ? dto.role() : user.getRole());
         user.setToken(dto.token());
+        user.setUsername(dto.username());
 
         if (dto.password() != null && !dto.password().isBlank()) {
             if (!passwordPattern.matcher(dto.password()).matches()) {

@@ -49,6 +49,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<TeamMember> teamMemberships;
 
+    @NotEmpty
+    @Column(unique = true)
+    private String username;
+
     //@OneToMany(mappedBy = "user")
     //private List<Auditlog> auditLogs;
 
