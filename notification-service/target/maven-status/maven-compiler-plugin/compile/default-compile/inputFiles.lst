@@ -1,6 +1,15 @@
 /home/miri/Downloads/manager.cloud.safe/notification-service/src/main/java/com/project/manager/cloud/safe/NotificationServiceApplication.java
+/home/miri/Downloads/manager.cloud.safe/notification-service/src/main/java/com/project/manager/cloud/safe/notificationconfig/repository/NotificationConfigRepository.java
+/home/miri/Downloads/manager.cloud.safe/notification-service/src/main/java/com/project/manager/cloud/safe/dto/NotificationResponseDTO.java
+/home/miri/Downloads/manager.cloud.safe/notification-service/src/main/java/com/project/manager/cloud/safe/notificationconfig/dto/NotificationConfigDTO.java
+/home/miri/Downloads/manager.cloud.safe/notification-service/src/main/java/com/project/manager/cloud/safe/notificationconfig/dto/NotificationConfigRequestDTO.java
+/home/miri/Downloads/manager.cloud.safe/notification-service/src/main/java/com/project/manager/cloud/safe/notificationconfig/entity/NotificationConfig.java
+/home/miri/Downloads/manager.cloud.safe/notification-service/src/main/java/com/project/manager/cloud/safe/notificationconfig/service/NotificationConfigService.java
 /home/miri/Downloads/manager.cloud.safe/notification-service/src/main/java/com/project/manager/cloud/safe/dto/NotificationDTO.java
+/home/miri/Downloads/manager.cloud.safe/notification-service/src/main/java/com/project/manager/cloud/safe/dto/NotificationRequestDTO.java
+/home/miri/Downloads/manager.cloud.safe/notification-service/src/main/java/com/project/manager/cloud/safe/notificationconfig/controller/NotificationConfigController.java
 /home/miri/Downloads/manager.cloud.safe/notification-service/src/main/java/com/project/manager/cloud/safe/service/NotificationService.java
 /home/miri/Downloads/manager.cloud.safe/notification-service/src/main/java/com/project/manager/cloud/safe/entity/Notification.java
 /home/miri/Downloads/manager.cloud.safe/notification-service/src/main/java/com/project/manager/cloud/safe/controller/NotificationController.java
 /home/miri/Downloads/manager.cloud.safe/notification-service/src/main/java/com/project/manager/cloud/safe/repository/NotificationRepository.java
+/home/miri/Downloads/manager.cloud.safe/notification-service/src/main/java/com/project/manager/cloud/safe/notificationconfig/dto/NotificationConfigResponseDTO.java

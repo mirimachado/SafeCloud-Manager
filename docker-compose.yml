@@ -1,5 +1,9 @@
 version: '3.8'
 
+networks:
+  microservices-network:
+    driver: bridge
+
 services:
   # ==================== POSTGRES ====================
   postgres-alert:
@@ -13,6 +17,13 @@ services:
       - "5433:5432"
     volumes:
       - alert_pgdata:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres-auditlog:
     image: postgres:15
@@ -25,6 +36,13 @@ services:
       - "5434:5432"
     volumes:
       - auditlog_pgdata:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres-authentication:
     image: postgres:15
@@ -37,6 +55,13 @@ services:
       - "5435:5432"
     volumes:
       - authentication_pgdata:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres-backup:
     image: postgres:15
@@ -49,6 +74,13 @@ services:
       - "5436:5432"
     volumes:
       - backup_pgdata:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres-configserver:
     image: postgres:15
@@ -61,6 +93,13 @@ services:
       - "5437:5432"
     volumes:
       - configserver_pgdata:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres-apigateway:
     image: postgres:15
@@ -73,6 +112,13 @@ services:
       - "5438:5432"
     volumes:
       - apigateway_pgdata:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres-dashboard:
     image: postgres:15
@@ -85,6 +131,13 @@ services:
       - "5439:5432"
     volumes:
       - dashboard_pgdata:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres-discovery:
     image: postgres:15
@@ -97,6 +150,13 @@ services:
       - "5440:5432"
     volumes:
       - discovery_pgdata:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres-logging:
     image: postgres:15
@@ -109,6 +169,13 @@ services:
       - "5441:5432"
     volumes:
       - logging_pgdata:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres-notification:
     image: postgres:15
@@ -121,6 +188,13 @@ services:
       - "5442:5432"
     volumes:
       - notification_pgdata:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres-sharedlibs:
     image: postgres:15
@@ -133,6 +207,13 @@ services:
       - "5443:5432"
     volumes:
       - sharedlibs_pgdata:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres-user:
     image: postgres:15
@@ -145,6 +226,13 @@ services:
       - "5444:5432"
     volumes:
       - user_pgdata:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres-vault:
     image: postgres:15
@@ -157,9 +245,15 @@ services:
       - "5445:5432"
     volumes:
       - vault_pgdata:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # ==================== MICROSERVIÇOS ====================
-
   config-server:
     build: ./config-server
     ports:
@@ -167,38 +261,47 @@ services:
     environment:
       SPRING_APPLICATION_NAME: config-server
       SERVER_PORT: 8888
-      # SUBSTITUA SEU_GITLAB_TOKEN_AQUI pelo seu token real do GitLab
       GITLAB_TOKEN: gldt-HhW-342z6yrXTCm1Jnj3
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-configserver:5432/configserver_ms_service_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: configserver_pass
+    networks:
+      - microservices-network
     depends_on:
-      - postgres-configserver
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8888/actuator/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+      postgres-configserver:
+        condition: service_healthy
 
   discovery-server:
     build: ./discovery-server
+    container_name: discovery-server
     ports:
       - "8761:8761"
     environment:
       SPRING_APPLICATION_NAME: discovery-server
+      SERVER_PORT: 8761
+      EUREKA_INSTANCE_HOSTNAME: discovery-server
+      EUREKA_CLIENT_REGISTERWITHEUREKA: "false"
+      EUREKA_CLIENT_FETCHREGISTRY: "false"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka/
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-discovery:5432/discoveryserver_ms_service_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: discovery_pass
-    depends_on:
-      config-server:
-        condition: service_healthy
-      postgres-discovery:
-        condition: service_started
+      SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8888
+      SPRING_JMX_ENABLED: "false"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+      test: ["CMD-SHELL", "curl -f http://localhost:8761 || exit 1"]
       interval: 30s
       timeout: 10s
-      retries: 5
+      retries: 3
+      start_period: 40s
+    networks:
+      - microservices-network
+    depends_on:
+      postgres-discovery:
+        condition: service_healthy
+      config-server:
+        condition: service_started
+    restart: unless-stopped
 
   api-gateway:
     build: ./api-gateway
@@ -209,11 +312,13 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-apigateway:5432/apigateway_ms_service_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: apigateway_pass
+    networks:
+      - microservices-network
     depends_on:
       discovery-server:
         condition: service_healthy
       postgres-apigateway:
-        condition: service_started
+        condition: service_healthy
 
   dashboard-service:
     build: ./dashboard-service
@@ -224,11 +329,13 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-dashboard:5432/dashboard_ms_service_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: dashboard_pass
+    networks:
+      - microservices-network
     depends_on:
       discovery-server:
         condition: service_healthy
       postgres-dashboard:
-        condition: service_started
+        condition: service_healthy
 
   alert-service:
     build: ./alert-service
@@ -239,11 +346,13 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-alert:5432/alert_ms_service_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: alert_pass
+    networks:
+      - microservices-network
     depends_on:
       discovery-server:
         condition: service_healthy
       postgres-alert:
-        condition: service_started
+        condition: service_healthy
 
   auditlog-service:
     build: ./auditlog-service
@@ -254,11 +363,13 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-auditlog:5432/auditlog_ms_service_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: auditlog_pass
+    networks:
+      - microservices-network
     depends_on:
       discovery-server:
         condition: service_healthy
       postgres-auditlog:
-        condition: service_started
+        condition: service_healthy
 
   authentication-service:
     build: ./authentication-service
@@ -270,11 +381,13 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: auth_pass
       JWT_SECRET: seu-jwt-secret-super-seguro-aqui-deve-ser-muito-longo-e-aleatorio-com-pelo-menos-256-bits
+    networks:
+      - microservices-network
     depends_on:
       discovery-server:
         condition: service_healthy
       postgres-authentication:
-        condition: service_started
+        condition: service_healthy
 
   backup-service:
     build: ./backup-service
@@ -285,11 +398,13 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-backup:5432/backup_ms_service_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: backup_pass
+    networks:
+      - microservices-network
     depends_on:
       discovery-server:
         condition: service_healthy
       postgres-backup:
-        condition: service_started
+        condition: service_healthy
 
   logging-service:
     build: ./logging-service
@@ -300,11 +415,13 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-logging:5432/logging_ms_service_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: logging_pass
+    networks:
+      - microservices-network
     depends_on:
       discovery-server:
         condition: service_healthy
       postgres-logging:
-        condition: service_started
+        condition: service_healthy
 
   notification-service:
     build: ./notification-service
@@ -315,11 +432,13 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-notification:5432/notification_ms_service_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: notification_pass
+    networks:
+      - microservices-network
     depends_on:
       discovery-server:
         condition: service_healthy
       postgres-notification:
-        condition: service_started
+        condition: service_healthy
 
   user-service:
     build: ./user-service
@@ -330,26 +449,30 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-user:5432/user_ms_service_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: user_pass
+    networks:
+      - microservices-network
     depends_on:
       discovery-server:
         condition: service_healthy
       postgres-user:
-        condition: service_started
+        condition: service_healthy
 
   vault-service:
     build: ./vault-service
     ports:
-      - "8200:8200"
+      - "8088:8088"
     environment:
       SPRING_APPLICATION_NAME: vault-service
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-vault:5432/vault_ms_service_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: vault_pass
+    networks:
+      - microservices-network
     depends_on:
       discovery-server:
         condition: service_healthy
       postgres-vault:
-        condition: service_started
+        condition: service_healthy
 
 volumes:
   alert_pgdata:

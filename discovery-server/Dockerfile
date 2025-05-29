@@ -1,8 +1,15 @@
-# Usar a imagem oficial do OpenJDK 17 (ou a versão que você estiver usando)
-FROM openjdk:17-jdk-alpine
+FROM openjdk:17-jdk-slim
 
-# Copiar o jar gerado para dentro da imagem
+# Instalar curl para healthcheck
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
 COPY target/*.jar app.jar
 
-# Rodar o jar quando iniciar o container
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENV JAVA_OPTS="-XX:+UnlockExperimentalVMOptions \
+               -Djava.security.egd=file:/dev/./urandom \
+               -Dspring.jmx.enabled=false"
+
+EXPOSE 8761
+
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]

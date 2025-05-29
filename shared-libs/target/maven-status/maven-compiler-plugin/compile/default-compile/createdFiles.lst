@@ -1,6 +1,9 @@
+com/project/manager/cloud/safe/entity/SharedLibs$SharedLibsBuilder.class
 com/project/manager/cloud/safe/dto/SharedLibsDTO.class
 com/project/manager/cloud/safe/service/SharedLibsService.class
 com/project/manager/cloud/safe/controller/SharedLibsController.class
 com/project/manager/cloud/safe/entity/SharedLibs.class
 com/project/manager/cloud/safe/SharedLibsApplication.class
+com/project/manager/cloud/safe/dto/SharedLibsRequestDTO.class
 com/project/manager/cloud/safe/repository/SharedLibsRepository.class
+com/project/manager/cloud/safe/dto/SharedLibsResponseDTO.class

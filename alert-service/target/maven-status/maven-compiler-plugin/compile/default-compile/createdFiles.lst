@@ -7,3 +7,4 @@ com/project/manager/cloud/safe/controller/AlertServiceController.class
 com/project/manager/cloud/safe/dto/AlertServiceResponseDTO.class
 com/project/manager/cloud/safe/enums/SeverityAlerts.class
 com/project/manager/cloud/safe/dto/AlertServiceDTO.class
+com/project/manager/cloud/safe/service/AlertServiceService.class

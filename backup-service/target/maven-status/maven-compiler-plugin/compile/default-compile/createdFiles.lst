@@ -1,6 +1,9 @@
 com/project/manager/cloud/safe/controller/BackupController.class
 com/project/manager/cloud/safe/repository/BackupRepository.class
+com/project/manager/cloud/safe/entity/Backup$BackupBuilder.class
 com/project/manager/cloud/safe/entity/Backup.class
+com/project/manager/cloud/safe/dto/BackupRequestDTO.class
 com/project/manager/cloud/safe/dto/BackupDTO.class
+com/project/manager/cloud/safe/dto/BackupResponseDTO.class
 com/project/manager/cloud/safe/BackupServiceApplication.class
 com/project/manager/cloud/safe/service/BackupService.class

@@ -1,6 +1,15 @@
 /home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/ConfigServerApplication.java
-/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/dto/ConfigServerDTO.java
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/dto/ConfigServerResponseDTO.java
 /home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/service/ConfigServerService.java
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/systemsettings/repository/SystemSettingsRepository.java
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/systemsettings/dto/SystemSettingsRequestDTO.java
 /home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/controller/ConfigServerController.java
 /home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/repository/ConfigServerRepository.java
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/systemsettings/dto/SystemSettingsDTO.java
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/systemsettings/dto/SystemSettingsResponseDTO.java
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/dto/ConfigServerDTO.java
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/systemsettings/controller/SystemSettingsController.java
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/systemsettings/entity/SystemSettings.java
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/dto/ConfigServerRequestDTO.java
 /home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/entity/ConfigServer.java
+/home/miri/Downloads/manager.cloud.safe/config-server/src/main/java/com/project/manager/cloud/safe/systemsettings/service/SystemSettingsService.java

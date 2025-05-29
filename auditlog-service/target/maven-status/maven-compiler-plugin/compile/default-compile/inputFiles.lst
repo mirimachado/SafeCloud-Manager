@@ -1,6 +1,8 @@
+/home/miri/Downloads/manager.cloud.safe/auditlog-service/src/main/java/com/project/manager/cloud/safe/dto/AuditlogResponseDTO.java
 /home/miri/Downloads/manager.cloud.safe/auditlog-service/src/main/java/com/project/manager/cloud/safe/AuditlogServiceApplication.java
 /home/miri/Downloads/manager.cloud.safe/auditlog-service/src/main/java/com/project/manager/cloud/safe/controller/AuditlogController.java
 /home/miri/Downloads/manager.cloud.safe/auditlog-service/src/main/java/com/project/manager/cloud/safe/service/AuditlogService.java
 /home/miri/Downloads/manager.cloud.safe/auditlog-service/src/main/java/com/project/manager/cloud/safe/dto/AuditlogDTO.java
 /home/miri/Downloads/manager.cloud.safe/auditlog-service/src/main/java/com/project/manager/cloud/safe/entity/Auditlog.java
+/home/miri/Downloads/manager.cloud.safe/auditlog-service/src/main/java/com/project/manager/cloud/safe/dto/AuditlogRequestDTO.java
 /home/miri/Downloads/manager.cloud.safe/auditlog-service/src/main/java/com/project/manager/cloud/safe/repository/AuditlogRepository.java

@@ -1,6 +1,9 @@
 com/project/manager/cloud/safe/dto/DiscoveryServerDTO.class
 com/project/manager/cloud/safe/entity/DiscoveryServer.class
+com/project/manager/cloud/safe/entity/DiscoveryServer$DiscoveryServerBuilder.class
 com/project/manager/cloud/safe/DiscoveryServerApplication.class
+com/project/manager/cloud/safe/dto/DiscoveryServerRequestDTO.class
 com/project/manager/cloud/safe/repository/DiscoveryServerRepository.class
+com/project/manager/cloud/safe/dto/DiscoveryServerResponseDTO.class
 com/project/manager/cloud/safe/controller/DiscoveryServerController.class
 com/project/manager/cloud/safe/service/DiscoveryServerService.class
