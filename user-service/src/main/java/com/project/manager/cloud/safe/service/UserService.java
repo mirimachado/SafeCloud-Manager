@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.regex.Pattern;
@@ -48,10 +49,13 @@ public class UserService {
                 .name(dto.username())
                 .email(dto.email())
                 .password(dto.password())
+                .timestampUpdatedAt(dto.timestampUpdatedAt())
+                .timestampCreatedAt(LocalDateTime.now())
                 .role(dto.role() != null ? dto.role() : UserRole.USER)
                 .token(dto.token())
                 .active(true)
                 .build();
+
 
         repository.save(user);
 
@@ -86,6 +90,9 @@ public class UserService {
         user.setRole(dto.role() != null ? dto.role() : user.getRole());
         user.setToken(dto.token());
         user.setUsername(dto.username());
+        user.setTimestampCreatedAt(dto.timestampCreatedAt());
+        user.setTimestampUpdatedAt(LocalDateTime.now());
+
 
         if (dto.password() != null && !dto.password().isBlank()) {
             if (!passwordPattern.matcher(dto.password()).matches()) {

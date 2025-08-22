@@ -10,7 +10,10 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -61,6 +64,13 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<UserSettings> settings;
+
+    @CreationTimestamp
+    private LocalDateTime timestampCreatedAt;
+
+    @UpdateTimestamp
+    private LocalDateTime timestampUpdatedAt;
+
 
 
     public User(String token,

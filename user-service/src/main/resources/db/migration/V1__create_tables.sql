@@ -28,7 +28,9 @@ CREATE TABLE users (
     active BOOLEAN DEFAULT TRUE,
     token VARCHAR(255) UNIQUE,
     organization_id UUID,
-    CONSTRAINT fk_users_organization FOREIGN KEY (organization_id) REFERENCES organization(id)
+    CONSTRAINT fk_users_organization FOREIGN KEY (organization_id) REFERENCES organization(id),
+    timestamp_created_at DATE,
+    timestamp_updated_at DATE
 );
 
 CREATE TABLE team (
